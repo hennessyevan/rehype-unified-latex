@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.toc
+*.synctex.gz
+*.DS_Store
+
+node_modules
+dist
+.env
