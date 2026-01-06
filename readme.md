@@ -26,7 +26,7 @@ const rehypeProcessor = unified()
   .use(rehypeUnifiedLatex, { documentClass: 'book' })
 
 const hast = rehypeProcessor.parse(html)
-const latexAst = rehypeProcessor.runSync(hast as any)
+const latexAst = rehypeProcessor.runSync(hast)
 
 // Turn LaTeX AST into a .tex string
 const latex = unified().use(unifiedLatexStringCompiler).stringify(latexAst)

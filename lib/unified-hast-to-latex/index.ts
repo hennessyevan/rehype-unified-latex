@@ -1,13 +1,15 @@
-import type { Root as HastRoot, Text, Content as HastContent } from 'hast'
+import { m } from '@unified-latex/unified-latex-builder'
 import * as Latex from '@unified-latex/unified-latex-types'
+import type { Content as HastContent, Root as HastRoot } from 'hast'
+import type { Plugin, Transformer } from 'unified'
 import {
   getBody,
+  hasFollowingParagraph,
   hastNodeToLatex,
   isParagraph,
-  hasFollowingParagraph,
 } from './collect-body.ts'
 import { applyMetaToLatex, getHead } from './collect-meta.ts'
-import { m } from '@unified-latex/unified-latex-builder'
+import type { VFile } from 'vfile'
 
 export interface RehypeUnifiedLatexOptions {
   documentClass?: 'article' | 'report' | 'book'
@@ -15,13 +17,12 @@ export interface RehypeUnifiedLatexOptions {
 
 export type HastNode = HastContent | HastRoot
 
-export function rehypeUnifiedLatex() {
-  return (
-    tree: HastRoot,
-    options: RehypeUnifiedLatexOptions = {
-      documentClass: 'book',
-    }
-  ) => {
+export const rehypeUnifiedLatex: Plugin<
+  [(RehypeUnifiedLatexOptions | null | undefined)?],
+  HastRoot,
+  Latex.Root
+> = (options = { documentClass: 'book' }) => {
+  return (tree) => {
     const head = getHead(tree)
     const body = getBody(tree)
 
@@ -48,7 +49,7 @@ export function rehypeUnifiedLatex() {
     content.push(m('end', 'document'))
 
     // add appropriate document meta
-    content.unshift(m('documentclass', options.documentClass ?? 'book'))
+    content.unshift(m('documentclass', options?.documentClass ?? 'book'))
 
     const root = applyMetaToLatex(tree, { type: 'root', content })
 

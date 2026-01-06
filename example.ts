@@ -2,17 +2,16 @@ import fs from 'fs'
 import path from 'path'
 import rehypeParse from 'rehype-parse'
 import { unified } from 'unified'
-import { unifiedHastToLatex } from './lib/unified-hast-to-latex/index.ts'
+import { rehypeUnifiedLatex } from './lib/unified-hast-to-latex/index.ts'
 import { unifiedLatexStringCompiler } from '@unified-latex/unified-latex-util-to-string'
 import { lints } from '@unified-latex/unified-latex-lint'
-import { removeMetadataFromRehype } from './lib/plugins/remove-metadata-text.ts'
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const sourceFilePath = path.join(
   __dirname,
   './books',
-  './Chesterton - The wisdom of Father Brown/source.html'
+  './Chesterton - Irish Impressions/source.html'
 )
 
 const html = fs.readFileSync(sourceFilePath, 'utf-8')
@@ -23,8 +22,7 @@ if (!html) {
 
 const processor = unified()
   .use(rehypeParse)
-  // .use(removeMetadataFromRehype)
-  .use(unifiedHastToLatex)
+  .use(rehypeUnifiedLatex, { documentClass: 'book' })
 
 const hast = processor.parse(html)
 
