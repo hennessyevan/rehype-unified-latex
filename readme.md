@@ -1,6 +1,6 @@
 # rehype-unified-latex
 
-A small unifiedJS plugin that turns an HTML/HAST tree into a LaTeX AST (see [unified-latex](https://github.com/uclmr/unified-latex)) so you can render, lint, or emit `.tex` from HTML sources. Designed for book-like documents where you want headings, chapters, metadata, and inline formatting to map cleanly into LaTeX.
+A small unifiedJS plugin that turns an HTML/HAST tree into a LaTeX AST (see [unified-latex](https://github.com/siefkenj/unified-latex)) so you can render, lint, or emit `.tex` from HTML sources. Designed for book-like documents (ebooks, etc.) where you want headings, chapters, metadata, and inline formatting to map cleanly into LaTeX.
 
 ## Installation
 
