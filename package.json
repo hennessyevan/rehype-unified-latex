@@ -6,7 +6,8 @@
   "types": "dist/index.d.mts",
   "scripts": {
     "example": "node ./example.ts",
-    "build": "tsdown ./index.ts"
+    "build": "tsdown ./index.ts",
+    "release": "pnpm version patch && pnpm build && git add . && git commit -m 'chore: release' && git push && git push --tags && pnpm publish"
   },
   "author": {
     "name": "Evan Hennessy",
