@@ -43,6 +43,53 @@ Unified plugin that converts HAST → unified-latex AST.
 Options:
 
 - `documentClass`: `'article' | 'report' | 'book'` (default: `'book'`). Used for the emitted `\documentclass{...}` macro.
+- `makeTitle`: `boolean` (default: `false`). When `true`, inserts `\maketitle` and uses metadata from the HTML `<head>` (e.g., `<meta name="title">`, `<meta name="author">`, `dc.title`, `dc.creator`) to populate `\title{}` and `\author{}`.
+- `macroReplacements`: `Record<string, string>` mapping CSS selectors to LaTeX macro names for inline styling (e.g., `{ 'b,strong': 'textbf', 'i,em': 'textit' }`). This lets you customize how inline HTML is converted to LaTeX commands.
+
+Default `macroReplacements`:
+
+```ts
+{
+  'b,strong': 'textbf',
+  'i,em': 'textit',
+  u: 'underline',
+  's,strike,del': 'sout',
+}
+```
+
+#### Advanced usage
+
+```ts
+import { unified } from 'unified'
+import rehypeParse from 'rehype-parse'
+import { rehypeUnifiedLatex } from 'rehype-unified-latex'
+import { unifiedLatexStringCompiler } from '@unified-latex/unified-latex-util-to-string'
+
+const html = `<!doctype html><html><head>
+  <meta name="title" content="My Book" />
+  <meta name="author" content="Jane Doe" />
+</head><body>
+  <h1 class="starred">Intro</h1>
+  <p><span class="smcap">Small Caps</span> and <u>underline</u>.</p>
+</body></html>`
+
+const processor = unified()
+  .use(rehypeParse)
+  .use(rehypeUnifiedLatex, {
+    documentClass: 'book',
+    makeTitle: true,
+    macroReplacements: {
+      'span.smcap': 'textsc',
+      u: 'underline',
+    },
+  })
+
+const hast = processor.parse(html)
+const latexAst = processor.runSync(hast as any)
+const latex = unified().use(unifiedLatexStringCompiler).stringify(latexAst)
+
+console.log(latex)
+```
 
 ## Notes & limitations
 
