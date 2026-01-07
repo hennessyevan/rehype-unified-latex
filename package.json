@@ -14,6 +14,10 @@
     "name": "Evan Hennessy",
     "url": "https://www.hennessyevan.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hennessyevan/hast-latex"
+  },
   "files": [
     "dist"
   ],
