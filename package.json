@@ -7,7 +7,8 @@
   "types": "dist/index.d.mts",
   "scripts": {
     "example": "node ./example.ts",
-    "build": "tsdown ./index.ts"
+    "build": "tsdown ./index.ts",
+    "release": "np"
   },
   "author": {
     "name": "Evan Hennessy",
@@ -40,7 +41,6 @@
     "hast-util-class-list": "^2.0.1",
     "hast-util-select": "^6.0.4",
     "unified": "^11.0.5",
-    "unist-util-select": "^5.1.0",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {

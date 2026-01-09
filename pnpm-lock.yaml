@@ -23,9 +23,6 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
-      unist-util-select:
-        specifier: ^5.1.0
-        version: 5.1.0
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1842,9 +1839,6 @@ packages:
 
   unist-util-remove@4.0.0:
     resolution: {integrity: sha512-b4gokeGId57UVRX/eVKej5gXqGlc9+trkORhFJpu9raqZkZhU0zm8Doi05+HaiBsMEIJowL+2WtQ5ItjsngPXg==}
-
-  unist-util-select@5.1.0:
-    resolution: {integrity: sha512-4A5mfokSHG/rNQ4g7gSbdEs+H586xyd24sdJqF1IWamqrLHvYb+DH48fzxowyOhOfK7YSqX+XlCojAyuuyyT2A==}
 
   unist-util-stringify-position@3.0.3:
     resolution: {integrity: sha512-k5GzIBZ/QatR8N5X2y+drfpWG8IDBzdnVj6OInRNWm1oXrzydiaAT2OQiA8DPRRZyAKb9b6I2a6PxYklZD0gKg==}
@@ -3821,14 +3815,6 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
-
-  unist-util-select@5.1.0:
-    dependencies:
-      '@types/unist': 3.0.3
-      css-selector-parser: 3.3.0
-      devlop: 1.1.0
-      nth-check: 2.1.1
-      zwitch: 2.0.4
 
   unist-util-stringify-position@3.0.3:
     dependencies:
