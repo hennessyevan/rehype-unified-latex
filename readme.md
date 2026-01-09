@@ -45,6 +45,7 @@ Options:
 - `documentClass`: `'article' | 'report' | 'book'` (default: `'book'`). Used for the emitted `\documentclass{...}` macro.
 - `makeTitle`: `boolean` (default: `false`). When `true`, inserts `\maketitle` and uses metadata from the HTML `<head>` (e.g., `<meta name="title">`, `<meta name="author">`, `dc.title`, `dc.creator`) to populate `\title{}` and `\author{}`.
 - `macroReplacements`: `Record<string, string>` mapping CSS selectors to LaTeX macro names for inline styling (e.g., `{ 'b,strong': 'textbf', 'i,em': 'textit' }`). This lets you customize how inline HTML is converted to LaTeX commands.
+- `customMetaSelectors`: `Partial<Record<'title' | 'author', string | ((node: Hast.Node) => Hast.Node)>>` (optional). Overrides the default algorithms for finding certain metadata from the HTML. Useful when the HTML uses non-standard tags or attributes for metadata. Can be a CSS selector string or a function that takes a HAST tree and returns a single HAST node.
 
 Default `macroReplacements`:
 
